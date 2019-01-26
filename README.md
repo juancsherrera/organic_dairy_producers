@@ -487,6 +487,8 @@ mapdetail <- mapdetail + coord_fixed(xlim = c(-93.301919,   -88.301919), ylim = 
 
 gganimate(mapdetail, interval = .3, ani.width= 2000, ani.height=1500, filename = 'detailnortheast.gif')
 ```
+![](README_figs/usamapall.gif)
+![](README_figs/detailnortheast.gif)
 
 ``` r
 #saves map and mapdetails up to a certain year: 2005, 2010, 2015::::
@@ -692,6 +694,7 @@ assign(paste0("Netchrono",i),yearNet1)
 
 system("convert -delay 80 *.png networks.gif")
 ```
+![](README_figs/networks.gif)
 
 ``` r
 pl1 <- fig1fig2005 + coord_map("albers", lat0=30, lat1=40)
