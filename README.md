@@ -1,16 +1,14 @@
 Dynamics of the U.S. Organic Dairy Farm Sector Since the Inception of the National Organic Standards
 ================
-Carolyn Dimitri, Juan C. S. Herrera
+Juan C. S. Herrera, Carolyn Dimitri
 January, 2019
 
 ``` r
-#LP
-setwd("/Users/juan/Dropbox/ACADEMICO/NYU PHD/Y2/Independent Study/Organic/food_journal")
-
-
-library(igraph)
-library(intergraph)
+##############
 #load libraries
+
+  library(igraph)
+  library(intergraph)
   library(tidyverse)
   library(RJSONIO)
   library(tinytex)
@@ -67,7 +65,7 @@ Getting GPS data:
 -----------------
 
 -   Create a vector concatenating the following fields: opPA\_line1 , opPA\_line2 , opPA\_city , opPA\_state , opPA\_country , opPA\_zip
--   Push this vector to Google Maps. Address: "<http://maps.google.com/maps/api/geocode/json?address>="
+-   Push this vector to Google Maps. Address: "<http://maps.google.com/maps/api/geocode/json?address>=" (Thie method is now deprecated starting June 2018. You will have to register for a google API: https://developers.google.com/maps/documentation/ and use your tokens)
 -   Retrieve the first result's latitude and longitude.
 -   You may need to register as a developer since the API has some restrictions on the number of queries that can be run per hour
 
@@ -376,11 +374,6 @@ WARNING: Takes some time to run, you can skip this chunk and load the data (eval
 ``` r
 ##Load Network
 net<-read.csv("prod_prod_year.csv",stringsAsFactors = FALSE)
-
-#isitallgood<-net[net$V1==c("9950004166"),]
-#colnames(isitallgood)
-#table(isitallgood$V5)
-
 net <- net[net$V11 <= (50*1.6),] #Distance in kilometers, therefore the *1.6
 net<-net[,c("V1","V2","V3","V4","V5","V6","V7","V8","V9","V10","V11")]
 net<-unique(net)
@@ -390,22 +383,7 @@ names(x1)[names(x1)=="unique(net$V1)"] <- "xx"
 names(x2)[names(x2)=="unique(net$V2)"] <- "xx"
 x3<-rbind(x1,x2)
 x3<-unique(x3)
-dim(x1)
 ```
-
-    ## [1] 2357    1
-
-``` r
-dim(x2)
-```
-
-    ## [1] 2357    1
-
-``` r
-dim(x3)
-```
-
-    ## [1] 2357    1
 
 ``` r
 remove(x1)
@@ -472,10 +450,8 @@ uniquefordots$year<-connectingmap$year
 uniquefordots<-unique(uniquefordots)
 
 uniquefordots$id<-as.character(paste(uniquefordots$id,uniquefordots$year,sep="_"))
-colnames(uniquefordots)
-```
 
-    ## [1] "id"   "lon"  "lat"  "year"
+```
 
 ``` r
 #Import USA map data
@@ -535,9 +511,6 @@ ggsave("fig1_2005.eps")
 dev.off()
 ```
 
-    ## null device 
-    ##           1
-
 ``` r
 mapdetail<-fig1fig
 mapdetail <- mapdetail + coord_fixed(xlim = c(-93.301919,   -88.301919), ylim = c(41.231517, 46.231517)) + theme_nothing()
@@ -569,9 +542,6 @@ ggsave("fig1_2010.eps")
 dev.off()
 ```
 
-    ## null device 
-    ##           1
-
 ``` r
 mapdetail<-fig1fig
 mapdetail <- mapdetail + coord_fixed(xlim = c(-93.301919,   -88.301919), ylim = c(41.231517, 46.231517)) + theme_nothing()
@@ -602,9 +572,6 @@ ggsave("fig1_2015.eps")
 dev.off()
 ```
 
-    ## null device 
-    ##           1
-
 ``` r
 mapdetail<-fig1fig
 mapdetail <- mapdetail + coord_fixed(xlim = c(-93.301919,   -88.301919), ylim = c(41.231517, 46.231517)) + theme_nothing()
@@ -616,7 +583,6 @@ ggsave("detailfig1_2015.eps")
 remove(mapdetail,fig1fig)
 ```
 
-dev.off()
 
 Create Networks (year by year)
 ==============================
@@ -719,9 +685,6 @@ plot.network(yearNet1,displaylabels = F, label=, main=i, edge.col = "gray", vert
 dev.off()
 
 
-
-#?plot.network
-
 assign(paste0("Netchrono",i),yearNet1)
 #remove(net_f1,yearNet1)
 
@@ -763,14 +726,9 @@ plot_grid(plot_grid(pl1, labels=c("(a)"), hjust = -9, vjust = 25),
 ``` r
 ggsave("Figure 2 a b.eps")
 ```
-
-    ## Saving 7 x 5 in image
-
 ``` r
 ggsave("Figure 2 a b.jpg")
 ```
-
-    ## Saving 7 x 5 in image
 
 ``` r
 plot_grid(plot_grid(pl2, labels=c("(c)"), hjust = -9, vjust = 25),
@@ -784,13 +742,9 @@ plot_grid(plot_grid(pl2, labels=c("(c)"), hjust = -9, vjust = 25),
 ggsave("Figure 2 c d.eps")
 ```
 
-    ## Saving 7 x 5 in image
-
 ``` r
 ggsave("Figure 2 c d.jpg")
 ```
-
-    ## Saving 7 x 5 in image
 
 ``` r
 plot_grid(plot_grid(pl3, labels=c("(e)"), hjust = -9, vjust = 25),
@@ -804,16 +758,8 @@ plot_grid(plot_grid(pl3, labels=c("(e)"), hjust = -9, vjust = 25),
 ggsave("Figure 2 e f.eps")
 ```
 
-    ## Saving 7 x 5 in image
-
 ``` r
 ggsave("Figure 2 e f.jpg")
-```
-
-    ## Saving 7 x 5 in image
-
-``` r
-beep()
 ```
 
 Network Analysis Statistics, following the paper (Barabasi, et al.)
@@ -849,9 +795,6 @@ x3<-as.data.frame(rbind(x1,x2))
 str(x3)
 ```
 
-    ## 'data.frame':    232528 obs. of  1 variable:
-    ##  $ op_id: num  1.6e+09 1.6e+09 1.6e+09 1.6e+09 1.6e+09 ...
-
 ``` r
 x3<-as.data.frame(unique(x3))
 x3$id<-seq.int(nrow(x3))
@@ -869,7 +812,6 @@ names(net_f)[names(net_f) == 'id'] <- 'net_id_to'
 net_f<-merge(net_f, x3, by.x = "from_id" , by.y = "op_id", sort = TRUE)
 names(net_f)[names(net_f) == 'id'] <- 'net_id_from'
 net_f<-net_f[,c("net_id_from","net_id_to","from_id","to_id","year_s","year_r","z_distance")]
-#head(net_f)
 ```
 
 ``` r
@@ -1018,12 +960,6 @@ remove(net_f1,yearNet1)
 }
 ```
 
-    ## [1] 104635      7
-    ## [1] 95
-    ## [1] 110511      7
-    ## [1] 100
-    ## [1] 116264      7
-
 ``` r
 ggplot(av_path_f, aes(year, av_sh_path, group = perc)) + 
   geom_line(aes(colour=perc, group=perc)) + labs(title = "Average Shortest Path", x = "year", y = "Av. Shortest Path") + theme_classic()
@@ -1036,7 +972,6 @@ ggsave("av_shortestpath.jpg", plot = last_plot(), width = 6, height = 3, units =
 ggsave("av_shortestpath.eps")
 ```
 
-    ## Saving 7 x 5 in image
 
 ``` r
 ggplot(av_separation_f, aes(year, av_separation, group = perc)) + geom_line(aes(colour=perc, group=perc)) + labs(title = "Closeness", x = "year", y = "Closeness") + theme_classic()
@@ -1049,8 +984,6 @@ ggsave("Closeness.jpg", plot = last_plot(), width = 6, height = 3, units = "in")
 ggsave("Closeness.eps")
 ```
 
-    ## Saving 7 x 5 in image
-
 ``` r
 ggplot(gtrans_time_f, aes(year, gtrans_time, group = perc)) + geom_line(aes(colour=perc, group=perc)) + labs(title = "Clustering coefficient", x = "year", y = "Clustering coefficient") + theme_classic()
 ```
@@ -1061,8 +994,6 @@ ggplot(gtrans_time_f, aes(year, gtrans_time, group = perc)) + geom_line(aes(colo
 ggsave("Clustering_coefficient.jpg", plot = last_plot(), width = 6, height = 3, units = "in")
 ggsave("Clustering_coefficient.eps")
 ```
-
-    ## Saving 7 x 5 in image
 
 ``` r
 ggplot(largest_cluster_f, aes(year, largest_cluster, group = perc)) + geom_line(aes(colour=perc, group=perc)) + labs(title = "Largest Cluster", x = "year", y = "Relative size of largest cluster") + theme_classic()
@@ -1075,8 +1006,6 @@ ggsave("Largest_Cluster.jpg", plot = last_plot(), width = 6, height = 3, units =
 ggsave("Largest_Cluster.eps")
 ```
 
-    ## Saving 7 x 5 in image
-
 ``` r
 ggplot(av_degree_f, aes(year, average_degree, group = perc)) + geom_line(aes(colour=perc, group=perc)) + labs(title = "Average Degree", x = "year", y = "Average Degree") + theme_classic()
 ```
@@ -1088,7 +1017,6 @@ ggsave("Average_Degree.jpg", plot = last_plot(), width = 6, height = 3, units = 
 ggsave("Average_Degree.eps")
 ```
 
-    ## Saving 7 x 5 in image
 
 ``` r
 beep()
