@@ -353,13 +353,6 @@ write.csv(distancesfff,"prod_prod_year.csv")
 #remove(distancesfff, distancesf, distancesff)
 distancesfff<-as.data.frame(distancesfff)
 
-
-#LOOKING FOR POTENTIAL ERROR
-#table(distancesfff$V5)
-#isthiserror<-as.data.frame(distancesfff[distancesfff$V2==c("9950004166"),])
-#table(isthiserror$V5)
-#write.csv(as.data.frame(distancesfff[distancesfff$V2==9950004166,]),"isthisok.csv")
-#table(isthiserror$V6)
 ```
 
 Mapping and Network Visualization
