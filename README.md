@@ -1,6 +1,6 @@
 Dynamics of the U.S. Organic Dairy Farm Sector Since the Inception of the National Organic Standards
 ================
-Juan C. S. Herrera, Carolyn Dimitri
+Juan C. S. Herrera, Carolyn Dimitri     
 January, 2019
 
 ``` r
