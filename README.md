@@ -765,7 +765,7 @@ ggsave("Figure 2 e f.eps")
 ggsave("Figure 2 e f.jpg")
 ```
 
-Network Analysis Statistics, following the paper (Barabasi, et al.)
+Network Analysis Statistics
 ===================================================================
 
 Network Analysis Statistics with inferred networks at different levels of connection probability.
