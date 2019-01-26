@@ -241,10 +241,10 @@ This assumed network relies on the fact that 50 miles should be a considerable d
 
 Furthermore, those connections have been programed to be time dependent. The data has been divided in three chronological cuts. We assume that a producer in chrono 1 will only connect with a producer in chrono 1. A new entrant producer in chrono 2 will connect with the alrready established producers: chrono 1, or with the new entrants : chrono 2. For a new entrant in chrono 3 they will connect with the established producers: that is chrono 1 or 2, and the new entrants in chrono 3.
 
-WARNING:
+Warning:
 ========
 
-The code below takes a long time to run. Depending on your system it can take up to 4 hours. You can skip this step and import the csv from the next step unless you want to test this yourself. In order to run it, change the chunk header from eval = F to eval = T.
+The code below takes a long time to run. Depending on your system it can take up to 4 hours
 
 ``` r
 #####################################################################
@@ -369,7 +369,7 @@ Mapping and Network Visualization
 
 This code imports all connections. In this database every single producer is connected to another one. In the code I filter this to include only those producers connected with other ones within 50 miles around them or less.
 
-WARNING: Takes some time to run, you can skip this chunk and load the data (eval = T if you want to run it)
+Warning: Takes quite some time to run.
 
 ``` r
 ##Load Network
@@ -433,7 +433,7 @@ write.csv(connectingmap,"connectingmapnet.csv")
 remove(connectingmap,a,b)
 ```
 
-Create Map (year by year)
+Create Maps (year by year)
 =========================
 
 The following code creates a map in which one can see how year by year each producer gets connected to another one. - The connections are made by connecting with other producers in a radius of 50 miles or less. - A producer that enters on a year x can only connect with producers that entered that same year or in the previous years.
@@ -476,6 +476,9 @@ mapusaallstates <- map + geom_text(data = uniquefordots, aes(x = lon, y = lat, f
  #create animation and export, for the whole USA
 gganimate(map, interval = .3, interval = .3, ani.width= 2000, ani.height=1500, filename = "usamapall.gif")
 ```
+Animated Map showing inferred networks at 100% probability of connecting in a. 50-mile radius
+=========================
+![](README_figs/usamapall.gif)
 
 ``` r
 #create animation and export, for a selection of the Northeast, specifically the coordinates inside the paaremeters.
@@ -487,7 +490,9 @@ mapdetail <- mapdetail + coord_fixed(xlim = c(-93.301919,   -88.301919), ylim = 
 
 gganimate(mapdetail, interval = .3, ani.width= 2000, ani.height=1500, filename = 'detailnortheast.gif')
 ```
-![](README_figs/usamapall.gif)
+
+Animated Map showing inferred networks at 100% probability of connecting in a. 50-mile radius. Detail for the Northeast of the USA. Centered around Organic Valley???s Distribution Center in the state of Wisconsin
+=========================
 ![](README_figs/detailnortheast.gif)
 
 ``` r
@@ -694,6 +699,8 @@ assign(paste0("Netchrono",i),yearNet1)
 
 system("convert -delay 80 *.png networks.gif")
 ```
+Animated Map showing inferred networks at 100% probability of connecting in a. 50-mile radius. Network version, as opposed to maps.
+=========================
 ![](README_figs/networks.gif)
 
 ``` r
