@@ -153,8 +153,7 @@ dairypgeo[dairypgeo$lat != "NA" & dairypgeo$op_status == "Certified", "category"
 #Data Loss Plot
 g<-ggplot(dairypgeo, aes(year, fill = category)) + 
   geom_bar() + scale_fill_manual("category", values = c("No GPS" = "red", "Status =/= Certified" = "blue", "GPS & Certified" = "gray")) +
-  labs(x = "Number of Certifications", y = "Year") + theme_classic(base_size = 20) + theme(legend.position="top")
-
+  labs(x = "Year", y = "Number of Certifications") + theme_classic(base_size = 20) + theme(legend.position="top")
 
 ncertifications <- paste(c("N = "),(as.character(length(dairypgeo$year))))
 
@@ -167,7 +166,7 @@ uniqueproducers<-unique(uniqueproducers)
 
 g2<-ggplot(uniqueproducers, aes(year, fill = category)) + 
   geom_bar() + scale_fill_manual("category", values = c("No GPS" = "red", "Status =/= Certified" = "blue", "GPS & Certified" = "gray")) +
-  labs(x = "Number of Producers", y = "Year") + theme_classic(base_size = 20) + theme(legend.position="top")
+  labs(x = "Year", y = "Number of Producers") + theme_classic(base_size = 20) + theme(legend.position="top")
 #g2 <- g2 + geom_text(stat='count', aes(label= ..count..), vjust = 0 ) labels?
 
 
