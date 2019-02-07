@@ -174,7 +174,7 @@ g2<-ggplot(uniqueproducers, aes(year, fill = category)) +
 plot_grid(g, g2,nrow=2, labels=c("(a)","(b)"), align="hv", hjust = -54, vjust = 56, scale = 0.95)
 ```
 
-![](README_figs/README-Plot%201-1.png)
+![](README_figs/Figure%201.jpg)
 
 ``` r
 ggsave("Figure 1.eps")
