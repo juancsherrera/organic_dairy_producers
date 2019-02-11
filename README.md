@@ -33,6 +33,7 @@ January, 2019
 Analysis
 --------
 
+
 1.  The data has been downloaded from <https://organic.ams.usda.gov/integrity/Reports/DataHistory.aspx> on June 8 2017. The specific download was "Data Submission Template Format: Operations/Scopes and Products on Separate Sheets" for 2016.
 
 2.  Merging Operation and Item. The data was merged for both sheets operation level and item level. The merger keys used were x="op\_nopOpID", by.y="ci\_nopOpID" all.y = TRUE. This means that every observation in item nopOpID was kept, even withouth a matching record in x.
